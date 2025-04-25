@@ -25,19 +25,23 @@ const Index = () => {
       
       toast({
         title: "Data loaded successfully",
-        description: Loaded ${result.data.length} rows and ${result.columns.length} columns of data.,
-      });
-    } catch (error) {
-      console.error("Error parsing file:", error);
-      toast({
-        variant: "destructive",
-        title: "Error loading file",
-        description: There was an error processing your file. ${error.message},
+        description: `Loaded ${result.data.length} rows and ${result.columns.length} columns of data.`,
       });
       
-      setData(null);
-      setColumns(null);
-    } finally {
+    } catch (error) {
+        console.error("Error parsing file:", error);
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      
+        toast({
+          variant: "destructive",
+          title: "Error loading file",
+          description: `There was an error processing your file. ${errorMessage}`,
+        });
+      
+        setData(null);
+        setColumns(null);
+      }
+       finally {
       setIsLoading(false);
     }
   };
