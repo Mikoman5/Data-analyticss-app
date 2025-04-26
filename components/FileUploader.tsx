@@ -1,22 +1,27 @@
 type FileUploaderProps = {
-    onFileUpload: (file: File) => void;
-    isProcessing: boolean;
-  };
-  
-  const FileUploader = ({ onFileUpload, isProcessing }: FileUploaderProps) => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files.length > 0) {
-        onFileUpload(e.target.files[0]);
-      }
-    };
-  
-    return (
-      <div className="border p-6 bg-white rounded-xl shadow-md">
-        <input type="file" accept=".xlsx,.xls" onChange={handleChange} disabled={isProcessing} />
-        {isProcessing && <p className="text-blue-500 mt-2">Processing file...</p>}
+  onFileUpload: (file: File) => void;
+  isProcessing: boolean;
+};
+
+const FileUploader = ({ onFileUpload, isProcessing }: FileUploaderProps) => {
+  return (
+    <div className="bg-surface border border-border p-6 rounded-card shadow-card space-y-4">
+      <div className="flex items-center justify-center space-x-2 text-subtle">
+        <span className="text-2xl">📤</span>
+        <span>Drag and drop or <span className="text-primary underline cursor-pointer">click to select</span></span>
       </div>
-    );
-  };
-  
-  export default FileUploader;
-  
+      <input
+        type="file"
+        accept=".xlsx,.xls"
+        onChange={(e) => onFileUpload(e.target.files?.[0]!)}
+        disabled={isProcessing}
+        className="hidden"
+        id="upload"
+      />
+      <button className="w-full bg-primary text-white py-2 rounded-md hover:bg-purple-600">Upload File</button>
+    </div>
+  );
+};
+
+
+export default FileUploader;

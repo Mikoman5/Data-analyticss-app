@@ -1,37 +1,29 @@
 type DataPreviewProps = {
-    data: any[] | null;
-    columns: string[] | null;
-    isLoading: boolean;
-  };
-  
-  const DataPreview = ({ data, columns, isLoading }: DataPreviewProps) => {
-    if (isLoading) return <p>Loading data...</p>;
-    if (!data || !columns) return <p>No data loaded yet.</p>;
-  
-    return (
-      <div className="overflow-auto bg-white p-4 rounded-xl shadow-md">
-        <table className="min-w-full text-sm">
+  data: any[] | null;
+  columns: string[] | null;
+  isLoading: boolean;
+};
+
+const DataPreview = ({ data }: { data: any[] | null }) => {
+  return (
+    <div className="bg-surface border border-border p-6 rounded-card shadow-card">
+      <h2 className="text-lg font-semibold mb-2">Data Preview</h2>
+      <p className="text-sm text-subtle mb-4">Upload a file to see data preview</p>
+      {data ? (
+        <table className="w-full text-sm text-gray-700">
           <thead>
-            <tr>
-              {columns.map((col, idx) => (
-                <th key={idx} className="p-2 text-left">{col}</th>
-              ))}
-            </tr>
+            {/* render column headers */}
           </thead>
           <tbody>
-            {data.slice(0, 10).map((row, idx) => (
-              <tr key={idx}>
-                {columns.map((col, cid) => (
-                  <td key={cid} className="p-2">{row[col]}</td>
-                ))}
-              </tr>
-            ))}
+            {/* render rows */}
           </tbody>
         </table>
-        <p className="text-xs mt-2">Showing first 10 rows...</p>
-      </div>
-    );
-  };
-  
-  export default DataPreview;
-  
+      ) : (
+        <p className="text-center text-subtle py-10">No data available</p>
+      )}
+    </div>
+  );
+};
+
+
+export default DataPreview;
