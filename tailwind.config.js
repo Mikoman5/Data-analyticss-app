@@ -19,9 +19,6 @@ module.exports = {
       colors: {
         background: "oklch(var(--background))",
         foreground: "oklch(var(--foreground))",
-        border: "oklch(var(--border))",
-        input: "oklch(var(--input))",
-        ring: "oklch(var(--ring))",
         card: "oklch(var(--card))",
         "card-foreground": "oklch(var(--card-foreground))",
         popover: "oklch(var(--popover))",
@@ -35,6 +32,9 @@ module.exports = {
         accent: "oklch(var(--accent))",
         "accent-foreground": "oklch(var(--accent-foreground))",
         destructive: "oklch(var(--destructive))",
+        border: "oklch(var(--border))",
+        input: "oklch(var(--input))",
+        ring: "oklch(var(--ring))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -49,4 +49,4 @@ module.exports = {
   plugins: [
     require("@tailwindcss/forms"),
   ],
-};
+}
