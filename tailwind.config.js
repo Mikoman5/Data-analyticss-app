@@ -1,31 +1,52 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./utils/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
       colors: {
-        primary: '#8b5cf6',        // Purple (for buttons/icons)
-        surface: '#ffffff',        // Cards
-        background: '#f9fafb',     // Page background
-        border: '#e5e7eb',         // Light borders
-        text: '#111827',           // Main text
-        subtle: '#6b7280',         // Subheadings
-      },
-      boxShadow: {
-        card: '0 1px 3px rgba(0, 0, 0, 0.05)',
+        background: "oklch(var(--background))",
+        foreground: "oklch(var(--foreground))",
+        border: "oklch(var(--border))",
+        input: "oklch(var(--input))",
+        ring: "oklch(var(--ring))",
+        card: "oklch(var(--card))",
+        "card-foreground": "oklch(var(--card-foreground))",
+        popover: "oklch(var(--popover))",
+        "popover-foreground": "oklch(var(--popover-foreground))",
+        primary: "oklch(var(--primary))",
+        "primary-foreground": "oklch(var(--primary-foreground))",
+        secondary: "oklch(var(--secondary))",
+        "secondary-foreground": "oklch(var(--secondary-foreground))",
+        muted: "oklch(var(--muted))",
+        "muted-foreground": "oklch(var(--muted-foreground))",
+        accent: "oklch(var(--accent))",
+        "accent-foreground": "oklch(var(--accent-foreground))",
+        destructive: "oklch(var(--destructive))",
       },
       borderRadius: {
-        card: '1rem',
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
       },
     },
   },
-  
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms"),
+  ],
 };

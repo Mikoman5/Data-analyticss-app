@@ -42,12 +42,10 @@ const Index = () => {
 
   return (
     <Layout title="Excel Data Analyzer">
-      <div className="bg-red-500 text-white p-4 rounded-lg">
-  If you can see this red box, Tailwind is working!
-</div>
-
-      <div className="space-y-10">
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      <div className="space-y-50"> {/* <--- Increased vertical spacing between sections */}
+        
+        {/* Upload and Preview Section */}
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-10"> {/* gap-10 between Upload and Preview */}
           <div className="xl:col-span-1">
             <FileUploader onFileUpload={handleFileUpload} isProcessing={isLoading} />
           </div>
@@ -56,16 +54,23 @@ const Index = () => {
           </div>
         </div>
 
+        {/* Data Insights Sections */}
         {data && columns && (
           <>
             <DataSummary data={data} columns={columns} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <DataVisualization data={data} columns={columns} />
-              <DataInsights data={data} columns={columns} />
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              <div>
+                <DataVisualization data={data} columns={columns} />
+              </div>
+              <div>
+                <DataInsights data={data} columns={columns} />
+              </div>
             </div>
           </>
         )}
 
+        {/* Recommendations Section */}
         <DataRecommendations data={data} columns={columns} />
       </div>
     </Layout>
