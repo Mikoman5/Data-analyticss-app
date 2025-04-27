@@ -89,29 +89,24 @@ export default function DataSummary({ data, columns }: DataSummaryProps) {
           <div className="space-y-4">
             <h3 className="text-sm font-medium text-muted-foreground">Numeric Column Statistics</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {numericStats.slice(0, 4).map((stat, index) => (
-                <div key={index} className="border rounded-md p-3 bg-background shadow-sm">
-                  <p className="text-xs font-semibold uppercase mb-2">{stat.column}</p>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <div>
-                      <p className="text-muted-foreground">Average</p>
-                      <p className="font-medium">{stat.avg}</p>
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">Sum</p>
-                      <p className="font-medium">{stat.sum}</p>
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">Min</p>
-                      <p className="font-medium">{stat.min}</p>
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">Max</p>
-                      <p className="font-medium">{stat.max}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            {numericStats.slice(0, 4).map((stat, index) => (
+  stat && (
+    <div key={index} className="border rounded-md p-3 bg-background shadow-sm">
+      <p className="text-xs font-semibold uppercase mb-2">{stat.column}</p>
+      <div className="grid grid-cols-2 gap-2 text-sm">
+        <div>
+          <p className="text-muted-foreground">Average</p>
+          <p>{Number(stat.avg).toFixed(2)}</p>
+        </div>
+        <div>
+          <p className="text-muted-foreground">Min</p>
+          <p>{Number(stat.min).toFixed(2)}</p>
+        </div>
+      </div>
+    </div>
+  )
+))}
+
             </div>
           </div>
         )}
