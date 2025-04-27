@@ -26,7 +26,7 @@ export default function DataPreview({ data, columns, isLoading }: DataPreviewPro
 
   if (!data || !columns || data.length === 0) {
     return (
-      <Card className="bg-muted/30 shadow-sm rounded-xl">
+      <Card className="text-center text-muted-foreground text-sm py-8">
         <CardTitle className="text-2xl font-bold" />
         <CardDescription className="text-muted-foreground text-sm" />
         <CardHeader>

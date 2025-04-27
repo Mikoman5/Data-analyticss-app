@@ -32,14 +32,13 @@ export const FileUploader = ({ onFileUpload, isProcessing }: FileUploaderProps) 
         className="hidden"
       />
       <Button
-        type="button"
-        onClick={handleButtonClick}
-        disabled={isProcessing}
-        size="lg"
-        variant="default"
-      >
-        {isProcessing ? "Processing..." : "Upload File"}
-      </Button>
+  onClick={handleButtonClick}
+  className="w-full"
+  disabled={isProcessing}
+>
+  {isProcessing ? "Processing..." : "Upload File"}
+</Button>
+
       <p className="text-muted-foreground mt-2 text-sm">
         Only .xlsx, .xls, or .csv files
       </p>

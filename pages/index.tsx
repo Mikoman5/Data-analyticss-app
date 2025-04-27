@@ -44,7 +44,7 @@ const Index = () => {
 
   return (
     <Layout title="Excel Data Analyzer">
-      <div className="space-y-12">
+      <div className="space-y-16">
         {/* FileUploader and DataPreview */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           <div className="xl:col-span-1">
