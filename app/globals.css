@@ -2,9 +2,10 @@
 @import "tw-animate-css";
 
 /* Tailwind Core */
-@import "tailwindcss/preflight"; /* ✅ Reset + basic styles */
-@import "tailwindcss/utilities"; /* ✅ Utilities only */
-@import "tailwindcss/components"; 
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+/* ✅ Utilities only */
+
 
 
 /* Set global font */
@@ -86,6 +87,7 @@ html {
   body {
     background-color: oklch(var(--background));
     color: oklch(var(--foreground));
+    font-family: 'Inter', sans-serif;
   }
 
   button,

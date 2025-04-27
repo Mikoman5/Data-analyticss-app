@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { FileUploader } from "@/components/FileUploader";
@@ -9,7 +11,7 @@ import DataRecommendations from "@/components/DataRecommendations";
 import { parseFile } from "@/utils/excelParser";
 import { useToast } from "@/components/ui/use-toast";
 
-const Index = () => {
+export default function Page() {
   const [data, setData] = useState<any[] | null>(null);
   const [columns, setColumns] = useState<string[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,7 +27,7 @@ const Index = () => {
 
       toast({
         title: "Data loaded successfully",
-        description: `Loaded ${result.data.length} rows and ${result.columns.length} columns of data.`,
+        description: `Loaded ${result.data.length} rows and ${result.columns.length} columns.`,
       });
     } catch (error: any) {
       console.error("Error parsing file:", error);
@@ -44,7 +46,7 @@ const Index = () => {
 
   return (
     <Layout title="Excel Data Analyzer">
-      <div className="space-y-16">
+      <div className="space-y-12">
         {/* FileUploader and DataPreview */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           <div className="xl:col-span-1">
@@ -55,28 +57,25 @@ const Index = () => {
           </div>
         </div>
 
-        {/* DataSummary and Visualizations */}
-        {data && columns ? (
-          <div className="space-y-8">
+        {/* DataSummary */}
+        {data && columns && (
+          <div className="space-y-12">
             <DataSummary data={data} columns={columns} />
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <DataVisualization data={data} columns={columns} />
-              <DataInsights data={data} columns={columns} />
+              <div>
+                <DataVisualization data={data} columns={columns} />
+              </div>
+              <div>
+                <DataInsights data={data} columns={columns} />
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="text-center text-muted-foreground text-sm mt-8">
-            Upload a file to preview and analyze your data!
           </div>
         )}
 
         {/* Recommendations */}
-        {data && columns ? (
-          <DataRecommendations data={data} columns={columns} />
-        ) : null}
+        <DataRecommendations data={data} columns={columns} />
       </div>
     </Layout>
   );
-};
-
-export default Index;
+}
