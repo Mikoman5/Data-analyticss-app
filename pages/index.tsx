@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import { FileUploader} from "@/components/FileUploader";
+import { FileUploader } from "@/components/FileUploader";
 import DataPreview from "@/components/DataPreview";
 import DataSummary from "@/components/DataSummary";
 import DataVisualization from "@/components/DataVisualization";
@@ -8,8 +8,6 @@ import DataInsights from "@/components/DataInsights";
 import DataRecommendations from "@/components/DataRecommendations";
 import { parseFile } from "@/utils/excelParser";
 import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button"; // ✅ correct
-
 
 const Index = () => {
   const [data, setData] = useState<any[] | null>(null);
@@ -57,24 +55,25 @@ const Index = () => {
           </div>
         </div>
 
-        {/* DataSummary */}
-        {data && columns && (
-          <div className="space-y-12">
+        {/* DataSummary and Visualizations */}
+        {data && columns ? (
+          <div className="space-y-8">
             <DataSummary data={data} columns={columns} />
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div>
-                <DataVisualization data={data} columns={columns} />
-              </div>
-              <div>
-                <DataInsights data={data} columns={columns} />
-              </div>
+              <DataVisualization data={data} columns={columns} />
+              <DataInsights data={data} columns={columns} />
             </div>
+          </div>
+        ) : (
+          <div className="text-center text-muted-foreground text-sm mt-8">
+            Upload a file to preview and analyze your data!
           </div>
         )}
 
         {/* Recommendations */}
-        <DataRecommendations data={data} columns={columns} />
+        {data && columns ? (
+          <DataRecommendations data={data} columns={columns} />
+        ) : null}
       </div>
     </Layout>
   );

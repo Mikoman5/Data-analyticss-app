@@ -1,45 +1,48 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import { UploadCloud } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter  } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+import { ChangeEvent, useRef } from "react";
+import { Button } from "@/components/ui/button";
 
-interface FileUploaderProps {
+export interface FileUploaderProps {
   onFileUpload: (file: File) => void;
-  isProcessing: boolean;
+  isProcessing?: boolean;
 }
 
-
-export function FileUploader({ onFileUpload }: FileUploaderProps) {
-  const fileInputRef = useRef<HTMLInputElement>(null)
+export const FileUploader = ({ onFileUpload, isProcessing }: FileUploaderProps) => {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleButtonClick = () => {
-    fileInputRef.current?.click()
-  }
+    fileInputRef.current?.click();
+  };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
-      onFileUpload(file)
+      onFileUpload(file);
     }
-  }
+  };
 
   return (
-    <Card className="flex flex-col items-center justify-center gap-4 py-10">
-      <CardContent className="flex flex-col items-center justify-center gap-4">
-        <UploadCloud className="h-5 w-5 text-primary" />
-        <Button onClick={handleButtonClick} className="text-white">
-          Upload File
-        </Button>
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          className="hidden"
-        />
-      </CardContent>
-    </Card>
-  )
-}
+    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed bg-muted/20 p-8 text-center">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".xlsx, .xls, .csv"
+        onChange={handleFileChange}
+        className="hidden"
+      />
+      <Button
+        type="button"
+        onClick={handleButtonClick}
+        disabled={isProcessing}
+        size="lg"
+        variant="default"
+      >
+        {isProcessing ? "Processing..." : "Upload File"}
+      </Button>
+      <p className="text-muted-foreground mt-2 text-sm">
+        Only .xlsx, .xls, or .csv files
+      </p>
+    </div>
+  );
+};
