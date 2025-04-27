@@ -27,9 +27,12 @@ export default function DataPreview({ data, columns, isLoading }: DataPreviewPro
   if (!data || !columns || data.length === 0) {
     return (
       <Card className="bg-muted/30 shadow-sm rounded-xl">
+        <CardTitle className="text-2xl font-bold" />
+        <CardDescription className="text-muted-foreground text-sm" />
         <CardHeader>
           <CardTitle>Data Preview</CardTitle>
           <CardDescription>Upload a file to see data preview</CardDescription>
+         
         </CardHeader>
         <CardContent className="flex items-center justify-center h-64">
           <div className="text-muted-foreground">

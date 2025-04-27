@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import FileUploader from "@/components/FileUploader";
+import { FileUploader} from "@/components/FileUploader";
 import DataPreview from "@/components/DataPreview";
 import DataSummary from "@/components/DataSummary";
 import DataVisualization from "@/components/DataVisualization";
@@ -8,6 +8,8 @@ import DataInsights from "@/components/DataInsights";
 import DataRecommendations from "@/components/DataRecommendations";
 import { parseFile } from "@/utils/excelParser";
 import { useToast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button"; // ✅ correct
+
 
 const Index = () => {
   const [data, setData] = useState<any[] | null>(null);
@@ -17,6 +19,7 @@ const Index = () => {
 
   const handleFileUpload = async (file: File) => {
     setIsLoading(true);
+
     try {
       const result = await parseFile(file);
       setData(result.data);
@@ -33,6 +36,7 @@ const Index = () => {
         title: "Error loading file",
         description: `There was an error processing your file. ${error.message}`,
       });
+
       setData(null);
       setColumns(null);
     } finally {
@@ -42,10 +46,9 @@ const Index = () => {
 
   return (
     <Layout title="Excel Data Analyzer">
-      <div className="space-y-50"> {/* <--- Increased vertical spacing between sections */}
-        
-        {/* Upload and Preview Section */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-10"> {/* gap-10 between Upload and Preview */}
+      <div className="space-y-12">
+        {/* FileUploader and DataPreview */}
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           <div className="xl:col-span-1">
             <FileUploader onFileUpload={handleFileUpload} isProcessing={isLoading} />
           </div>
@@ -54,12 +57,12 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Data Insights Sections */}
+        {/* DataSummary */}
         {data && columns && (
-          <>
+          <div className="space-y-12">
             <DataSummary data={data} columns={columns} />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div>
                 <DataVisualization data={data} columns={columns} />
               </div>
@@ -67,10 +70,10 @@ const Index = () => {
                 <DataInsights data={data} columns={columns} />
               </div>
             </div>
-          </>
+          </div>
         )}
 
-        {/* Recommendations Section */}
+        {/* Recommendations */}
         <DataRecommendations data={data} columns={columns} />
       </div>
     </Layout>

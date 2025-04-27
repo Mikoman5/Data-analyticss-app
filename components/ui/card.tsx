@@ -32,7 +32,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <h3
       data-slot="card-title"
-      className={cn("text-2xl font-bold tracking-tight", className)}
+      className={cn("text-lg font-semibold leading-6 tracking-tight", className)}
       {...props}
     />
   );
@@ -65,7 +65,7 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("mt-4 space-y-4", className)}
+      className={cn("px-6 pt-0 pb-6", className)} // <-- Notice pt-0 and pb-6
       {...props}
     />
   );
@@ -75,7 +75,8 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center justify-end pt-6 border-t", className)}
+      className={cn("flex items-center justify-end px-6 pt-4 border-t", className)} // <- added px-6 pt-4
+
       {...props}
     />
   );
