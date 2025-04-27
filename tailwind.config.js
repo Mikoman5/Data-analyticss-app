@@ -35,6 +35,19 @@ module.exports = {
         border: "oklch(var(--border))",
         input: "oklch(var(--input))",
         ring: "oklch(var(--ring))",
+        "chart-1": "oklch(var(--chart-1))",
+        "chart-2": "oklch(var(--chart-2))",
+        "chart-3": "oklch(var(--chart-3))",
+        "chart-4": "oklch(var(--chart-4))",
+        "chart-5": "oklch(var(--chart-5))",
+        sidebar: "oklch(var(--sidebar))",
+        "sidebar-foreground": "oklch(var(--sidebar-foreground))",
+        "sidebar-primary": "oklch(var(--sidebar-primary))",
+        "sidebar-primary-foreground": "oklch(var(--sidebar-primary-foreground))",
+        "sidebar-accent": "oklch(var(--sidebar-accent))",
+        "sidebar-accent-foreground": "oklch(var(--sidebar-accent-foreground))",
+        "sidebar-border": "oklch(var(--sidebar-border))",
+        "sidebar-ring": "oklch(var(--sidebar-ring))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -49,4 +62,4 @@ module.exports = {
   plugins: [
     require("@tailwindcss/forms"),
   ],
-}
+};
