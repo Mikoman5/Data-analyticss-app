@@ -90,7 +90,7 @@ export default function DataSummary({ data, columns }: DataSummaryProps) {
             <h3 className="text-sm font-medium text-muted-foreground">Numeric Column Statistics</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {numericStats.slice(0, 4).map((stat, index) => (
-  stat ? (  // CHECK if stat is not null first
+  stat ? ( // ✅ ADD THIS NULL CHECK
     <div key={index} className="border rounded-md p-3 bg-background shadow-sm">
       <p className="text-xs font-semibold uppercase mb-2">{stat.column}</p>
       <div className="grid grid-cols-2 gap-2 text-sm">
@@ -104,8 +104,9 @@ export default function DataSummary({ data, columns }: DataSummaryProps) {
         </div>
       </div>
     </div>
-  ) : null // If stat is null, render nothing
+  ) : null // ✅ IF NULL, RENDER NOTHING
 ))}
+
 
 
             </div>
