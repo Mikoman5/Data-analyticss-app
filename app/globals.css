@@ -5,7 +5,7 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 /* ✅ Utilities only */
-
+@import "tailwindcss/components";
 
 
 /* Set global font */
@@ -87,7 +87,7 @@ html {
   body {
     background-color: oklch(var(--background));
     color: oklch(var(--foreground));
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
   }
 
   button,
