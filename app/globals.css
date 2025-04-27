@@ -5,7 +5,6 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 /* ✅ Utilities only */
-@import "tailwindcss/components";
 
 
 /* Set global font */
@@ -84,19 +83,37 @@ html {
 }
 
 @layer base {
+  * {
+    border-color: oklch(var(--border));
+  }
+
   body {
     background-color: oklch(var(--background));
     color: oklch(var(--foreground));
-    font-family: var(--font-sans);
+    font-family: 'Inter', sans-serif;
   }
 
-  button,
-  input,
-  select,
-  textarea {
-    border-width: 1px;
+  h1, h2, h3, h4, h5, h6 {
+    color: oklch(var(--foreground));
+    font-weight: 700;
+  }
+
+  p {
+    color: oklch(var(--foreground));
+  }
+
+  button {
+    background-color: oklch(var(--primary));
+    color: oklch(var(--primary-foreground));
     border-radius: var(--radius);
-    font-size: 0.875rem;
-    border-color: oklch(var(--border));
+    font-weight: 600;
+  }
+
+  input, select, textarea {
+    background-color: oklch(var(--background));
+    color: oklch(var(--foreground));
+    border-radius: var(--radius);
+    font-size: 0.875rem; /* small text */
+    padding: 0.5rem;
   }
 }
